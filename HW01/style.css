@@ -1,0 +1,591 @@
+/* ========== متغیرهای رنگی - تم آبی ========== */
+:root {
+  --primary-blue: #2563eb;
+  --primary-blue-dark: #1e40af;
+  --primary-blue-light: #3b82f6;
+  --secondary-blue: #60a5fa;
+  --light-blue: #dbeafe;
+  --very-light-blue: #eff6ff;
+  --dark-blue: #1e3a8a;
+
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-light: #94a3b8;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-gradient-start: #eff6ff;
+  --bg-gradient-end: #dbeafe;
+  --border-color: #e2e8f0;
+
+  --success-green: #10b981;
+  --danger-red: #ef4444;
+
+  --shadow-sm: 0 1px 2px 0 rgba(37, 99, 235, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(37, 99, 235, 0.1),
+    0 2px 4px -1px rgba(37, 99, 235, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(37, 99, 235, 0.1),
+    0 4px 6px -2px rgba(37, 99, 235, 0.05);
+
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== تم تاریک ========== */
+[data-theme="dark"] {
+  --primary-blue: #3b82f6;
+  --primary-blue-dark: #2563eb;
+  --primary-blue-light: #60a5fa;
+  --secondary-blue: #3b82f6;
+  --light-blue: #1e3a8a;
+  --very-light-blue: #1e40af;
+  --dark-blue: #93c5fd;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-light: #94a3b8;
+
+  --bg-primary: #1e293b;
+  --bg-secondary: #334155;
+  --bg-gradient-start: #0f172a;
+  --bg-gradient-end: #1e293b;
+  --border-color: #475569;
+
+  --success-green: #34d399;
+  --danger-red: #f87171;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5),
+    0 4px 6px -2px rgba(0, 0, 0, 0.4);
+}
+
+/* ========== Reset و تنظیمات پایه ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Vazirmatn", "Vazir", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  );
+  min-height: 100vh;
+  padding: 20px;
+  direction: rtl;
+  transition: var(--transition);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========== اطمینان از استفاده از فونت Vazir در همه جا ========== */
+* {
+  font-family: inherit;
+}
+
+input,
+textarea,
+button,
+select {
+  font-family: "Vazirmatn", "Vazir", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-variant-numeric: inherit;
+}
+
+/* ========== نمایش اعداد به صورت فارسی ========== */
+body,
+* {
+  font-feature-settings: "ss02" 1;
+}
+
+/* ========== Container اصلی ========== */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg-primary);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== هدر ========== */
+header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--light-blue);
+}
+
+h1 {
+  color: var(--primary-blue);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* ========== دکمه تغییر تم - موقعیت ثابت ========== */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  background: var(--bg-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.15) rotate(15deg);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
+  border-color: var(--primary-blue);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  font-size: 1.5rem;
+  position: absolute;
+  transition: var(--transition);
+}
+
+.theme-icon.sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-icon.moon {
+  opacity: 0;
+  transform: rotate(180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-icon.sun {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0);
+}
+
+[data-theme="dark"] .theme-icon.moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ========== بخش ورودی ========== */
+.input-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 14px 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: var(--transition);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+#taskInput:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+#taskInput::placeholder {
+  color: var(--text-light);
+}
+
+.add-btn {
+  padding: 14px 28px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue) 0%,
+    var(--primary-blue-dark) 100%
+  );
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-md);
+}
+
+.add-btn span {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue-light) 0%,
+    var(--primary-blue) 100%
+  );
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+/* ========== بخش فیلتر ========== */
+.filter-section {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 8px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  background: var(--very-light-blue);
+  color: var(--primary-blue);
+}
+
+.filter-btn.active {
+  background: var(--primary-blue);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========== محفظه کارها ========== */
+.tasks-container {
+  min-height: 300px;
+  margin-bottom: 24px;
+}
+
+.task-list {
+  list-style: none;
+}
+
+/* ========== آیتم کار ========== */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: var(--transition);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.task-item:hover {
+  border-color: var(--secondary-blue);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.task-item.done {
+  background: var(--very-light-blue);
+  border-color: var(--secondary-blue);
+}
+
+/* ========== چک باکس سفارشی ========== */
+.task-checkbox {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 2px solid var(--primary-blue);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.task-checkbox:hover {
+  background: var(--very-light-blue);
+  transform: scale(1.1);
+}
+
+.task-item.done .task-checkbox {
+  background: var(--primary-blue);
+}
+
+.task-checkbox::after {
+  content: "✓";
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0;
+  transform: scale(0);
+  transition: var(--transition);
+}
+
+.task-item.done .task-checkbox::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ========== متن کار ========== */
+.task-text {
+  flex: 1;
+  font-size: 1rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition);
+  word-break: break-word;
+}
+
+.task-item.done .task-text {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+/* ========== ورودی ویرایش ========== */
+.task-edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid var(--primary-blue);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  color: var(--text-primary);
+}
+
+.task-edit-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ========== دکمه‌های عملیات ========== */
+.task-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.edit-btn {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+}
+
+.edit-btn:hover {
+  background: var(--secondary-blue);
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: var(--danger-red);
+}
+
+.delete-btn:hover {
+  background: var(--danger-red);
+  color: white;
+  transform: scale(1.1);
+}
+
+.save-btn {
+  background: #d1fae5;
+  color: var(--success-green);
+}
+
+.save-btn:hover {
+  background: var(--success-green);
+  color: white;
+  transform: scale(1.1);
+}
+
+.cancel-btn {
+  background: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.cancel-btn:hover {
+  background: var(--text-secondary);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* ========== حالت خالی ========== */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty-state.hidden {
+  display: none;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.empty-hint {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* ========== آمار ========== */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--very-light-blue);
+  border-radius: 12px;
+  border: 2px solid var(--light-blue);
+}
+
+.stats span {
+  font-size: 0.9rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 640px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 20px;
+    margin: 0;
+    border-radius: 16px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .theme-toggle {
+    top: 15px;
+    left: 15px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .theme-icon {
+    font-size: 1.3rem;
+  }
+
+  .input-section {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .task-item {
+    padding: 12px;
+  }
+
+  .task-text {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========== انیمیشن حذف ========== */
+.task-item.removing {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+@keyframes slideOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* ========== فیلتر کردن کارها ========== */
+.task-item.hidden {
+  display: none;
+}
